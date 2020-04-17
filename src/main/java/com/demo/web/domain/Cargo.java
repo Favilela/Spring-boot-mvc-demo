@@ -1,22 +1,22 @@
 package com.demo.web.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "departamentos")
-public class Departamento extends AbstractEntity<Long> {
+@Table(name = "cargos")
+public class Cargo extends AbstractEntity<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "nome", nullable = false, unique = true, length = 60)
 	private String nome;
 	
-	@OneToMany(mappedBy = "departamento")
-	private List<Cargo> cargos;
+	@ManyToOne
+	@JoinColumn(name = "id_departamento_fk")
+	private Departamento departamento;
 
 	public String getNome() {
 		return nome;
@@ -26,12 +26,13 @@ public class Departamento extends AbstractEntity<Long> {
 		this.nome = nome;
 	}
 
-	public List<Cargo> getCargos() {
-		return cargos;
+	public Departamento getDepartamento() {
+		return departamento;
 	}
 
-	public void setCargos(List<Cargo> cargos) {
-		this.cargos = cargos;
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
+	
 
 }
