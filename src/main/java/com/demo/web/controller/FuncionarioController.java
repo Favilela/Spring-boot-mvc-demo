@@ -44,6 +44,7 @@ public class FuncionarioController {
 		return "redirect:/funcionarios/cadastrar";
 	}
 
+	@ModelAttribute("cargos")
 	public List<Cargo> getCargos() {
 		
 		return cargoService.buscarTodos();
